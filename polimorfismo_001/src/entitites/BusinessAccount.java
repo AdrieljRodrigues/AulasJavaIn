@@ -27,4 +27,9 @@ public class BusinessAccount extends Account {
 		}
 	}
 	
+	@Override   ///sobrepoe o metodo da classe Account
+	public void withDraw(Double amount) {
+		super.withDraw(amount);  //usando o metodo da classe Account e alterando-o
+		balance -= 2;
+	}
 }
