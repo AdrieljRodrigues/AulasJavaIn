@@ -3,4 +3,20 @@
     <fullyQualifiedTypeName name="entitites.Account"/>
     <fullyQualifiedTypeName name="entitites.SavingsAccount"/>
     <fullyQualifiedTypeName name="entitites.BusinessAccount"/>
+    <fullyQualifiedTypeName name="java.lang.ThreadDeath"/>
+    <fullyQualifiedTypeName name="entities.OutsourcedEmployee"/>
+    <fullyQualifiedTypeName name="entities.Employee"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="entities.ImportedProduct"/>
+    <fullyQualifiedTypeName name="entities.UsedProduct"/>
+    <fullyQualifiedTypeName name="entities.Product"/>
+    <fullyQualifiedTypeName name="java.util.Locale"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="entitites.Shape"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="entitites.Circle"/>
+    <fullyQualifiedTypeName name="entitites.Rectangle"/>
+    <fullyQualifiedTypeName name="application.enums.Colors"/>
+    <fullyQualifiedTypeName name="java.text.Format"/>
 </qualifiedTypeNameHistroy>
