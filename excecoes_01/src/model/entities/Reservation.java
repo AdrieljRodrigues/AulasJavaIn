@@ -56,9 +56,18 @@ public class Reservation {
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS); //a classe timeunit é um tipo enumerado 
 	}			//convertendo o diff que estava em milisegundos para dias
 	
-	public void updateDates(Date checkIn, Date checkOut) { //Atualizando a reserva
+	public String updateDates(Date checkIn, Date checkOut) { //Atualizando a reserva
+		
+		Date now = new Date(); //cria uma data com horario atual
+		if(checkIn.before(now) || checkOut.before(now)) { //vê se é uma data antes o depois da atual
+			return "Reservation dates for update must be future dates";
+		}
+		if(!checkOut.after(checkIn)) {// vê se o checkout é posterior ao checkin
+			return "Check-out date must be after check-in date ";
+		}
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
+		return null; //se der certo ele atualiza e retorna nulo 
 	}
 	
 	@Override
