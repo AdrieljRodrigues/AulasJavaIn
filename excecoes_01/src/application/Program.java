@@ -6,26 +6,25 @@ import java.util.Date;
 import java.util.Scanner;
 
 import model.entities.Reservation;
+import model.exceptions.DomainExceptions;
 
 public class Program {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		
-		System.out.print("Room number: ");
-		int number = sc.nextInt();
-		System.out.print("Check-in date (dd/MM/yyyy): ");
-		Date checkIn = sdf.parse(sc.next()); //converte em data
-		System.out.print("Check-out date (dd/MM/yyyy): ");
-		Date checkOut = sdf.parse(sc.next());
-		
-		if(!checkOut.after(checkIn)) {//after testa se uma data é superior a outra
-			System.out.println("Error in reservation: Check-out date must be after check-in date ");
-		}
-		else { //instanciando a reserva
+		try {
+			System.out.print("Room number: ");
+			int number = sc.nextInt();
+			System.out.print("Check-in date (dd/MM/yyyy): ");
+			Date checkIn = sdf.parse(sc.next()); //converte em data
+			System.out.print("Check-out date (dd/MM/yyyy): ");
+			Date checkOut = sdf.parse(sc.next());
+	
+			//instanciando a reserva
 			Reservation reservation = new Reservation(number, checkIn, checkOut);
 			System.out.println("Reservation: " + reservation);
 			
@@ -35,24 +34,19 @@ public class Program {
 			checkIn = sdf.parse(sc.next()); //converte em data
 			System.out.print("Check-out date (dd/MM/yyyy): ");
 			checkOut = sdf.parse(sc.next());
-			
-			/*Solução ruim
-			Date now = new Date(); //cria uma data com horario atual
-			if(checkIn.before(now) || checkOut.before(now)) {
-				System.out.println("Error in reservation: Reservation dates for update must be future dates");
-			}
-			else if(!checkOut.after(checkIn)) {
-				System.out.println("Error in reservation: Check-out date must be after check-in date ");
-			}
-			else*/			
-			String error = reservation.updateDates(checkIn, checkOut); //a String vai informar se aconteceu algum erro
-			if(error != null) { // se o error for diferente de nulo, ouve algum erro , e é chamado o String a mensagem do error
-				System.out.println("Error in reservation: " + error);
-			}
-			else {
-				System.out.println("Reservation: " + reservation);
-			}
-		}	
+					
+			reservation.updateDates(checkIn, checkOut); //a String vai informar se aconteceu algum erro
+			System.out.println("Reservation: " + reservation);
+		} //se ouver uma exceção no programa o try é interrompido e os blocos cacth vao mostrar qual foi
+		catch(ParseException e){
+			System.out.println("Invalid date format");									
+		}
+		catch(DomainExceptions e) {
+			System.out.println("Error in reservation: " + e.getMessage()); //mostra a mensagem da exceção na classe reservation
+		}
+		catch(RuntimeException e) {
+			System.out.println("Unexpected error"); // qualquer outra exceção 
+		}
 		sc.close();
 	}
 }
